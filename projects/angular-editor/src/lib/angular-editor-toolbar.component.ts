@@ -1,8 +1,8 @@
-import {Component, ElementRef, EventEmitter, Inject, Output, Renderer2, ViewChild} from "@angular/core";
-import {AngularEditorService} from "./angular-editor.service";
-import {HttpResponse} from "@angular/common/http";
-import {DOCUMENT} from "@angular/common";
-import {CustomClass, Font} from "./config";
+import {Component, ElementRef, EventEmitter, Inject, Output, Renderer2, ViewChild} from '@angular/core';
+import {AngularEditorService} from './angular-editor.service';
+import {HttpResponse} from '@angular/common/http';
+import {DOCUMENT} from '@angular/common';
+import {CustomClass, Font} from './config';
 
 @Component({
   selector: 'angular-editor-toolbar',
@@ -24,6 +24,7 @@ export class AngularEditorToolbarComponent {
   customClassId = -1;
   customClasses: CustomClass[];
   uploadUrl:string;
+  onUploadError: any =  null;
 
   tagMap = {
     BLOCKQUOTE: "indent",
@@ -197,6 +198,10 @@ export class AngularEditorToolbarComponent {
               if (e instanceof HttpResponse) {
                 this.editorService.insertImage(e.body.imageUrl);
                 this.fileReset();
+              }
+            }, (error) => {
+              if (this.onUploadError) {
+                this.onUploadError(error);
               }
             });
         } else{

@@ -27,6 +27,7 @@ export interface AngularEditorConfig {
   uploadUrl?: string;
   fonts?: Font[];
   customClasses?: CustomClass[];
+  onUploadError?: any;
 }
 
 export const angularEditorConfig: AngularEditorConfig = {

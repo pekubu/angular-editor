@@ -62,6 +62,7 @@ export class AngularEditorComponent implements OnInit, ControlValueAccessor, Aft
     this.editorToolbar.fonts = this.config.fonts ? this.config.fonts : angularEditorConfig.fonts;
     this.editorToolbar.customClasses = this.config.customClasses;
     this.editorToolbar.uploadUrl = this.config.uploadUrl;
+    this.editorToolbar.onUploadError = this.config.onUploadError;
     this.editorService.uploadUrl = this.config.uploadUrl;
     if (this.config.showToolbar !== undefined) {
       this.editorToolbar.showToolbar = this.config.showToolbar;
